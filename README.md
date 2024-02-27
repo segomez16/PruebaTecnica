@@ -23,6 +23,8 @@ Este proyecto es un sistema de gestión para un supermercado en línea. Permite 
 - Librerias
   - phpmailer
   - dompdf
+- Base de datos
+  - Mysql
 
 ## Requisitos de Instalación
 
