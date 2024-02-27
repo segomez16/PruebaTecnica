@@ -38,55 +38,29 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Opciones</div>
-                    <a class="nav-link" href="./index.php?controlador=index&accion=Principal">
+                    <a class="nav-link" href="./index.php?controlador=index&accion=Sales">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Inicio
                     </a>
 
-                    <a class="nav-link" href="./index.php?controlador=Employees&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-                        Empleados
-                    </a>
 
-                    <a class="nav-link" href="./index.php?controlador=Costumers&accion=Principal">
+                    <a class="nav-link" href="./index.php?controlador=Costumers&accion=Sales">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users-between-lines"></i></div>
                         Clientes
                     </a>
 
-                    <a class="nav-link" href="./index.php?controlador=EmployeePosition&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-user-tie"></i></div>
-                        Posiciones
-                    </a>
 
-                    <a class="nav-link" href="./index.php?controlador=Inventory&accion=Principal">
+                    <a class="nav-link" href="./index.php?controlador=Inventory&accion=Sales">
                         <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                         Inventario
                     </a>
 
-                    <a class="nav-link" href="./index.php?controlador=InventoryTransactions&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-exchange-alt"></i></div>
-                        Transciones de inventario
-                    </a>
 
-                    <a class="nav-link" href="./index.php?controlador=Category&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-cubes"></i></div>
-                        Categorias
-                    </a>
-
-                    <a class="nav-link" href="./index.php?controlador=Products&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-cube"></i></div>
-                        Producto
-                    </a>
-
-                    <a class="nav-link" href="./index.php?controlador=Sales&accion=Principal">
+                    <a class="nav-link" href="./index.php?controlador=Sales&accion=Sales">
                         <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                         Ventas
                     </a>
 
-                    <a class="nav-link" href="./index.php?controlador=Supplier&accion=Principal">
-                        <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
-                        Proveedores
-                    </a>
                 </div>
             </div>
         </nav>
@@ -186,5 +160,6 @@
 
 </body>
 </html>
+
 
 

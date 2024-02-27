@@ -16,6 +16,10 @@ class CostumersControlador
         require_once './Vista/View/Customers/Index.php';
     }
 
+    function Sales (){
+        $costumer = $this->viewAll();
+        require_once './Vista/View/Customers/employees.php';
+    }
     function Todos()
     {
         $eM = new \Modelo\Metodos\CostumersM();

@@ -17,6 +17,10 @@ class EmployeePositionControlador
         require_once './Vista/View/EmployeesPosition/Index.php';
     }
 
+    function RRHH(){
+        $positions = $this->viewAll();
+        require_once './Vista/View/EmployeesPosition/rrhh.php';
+    }
 
     function Todos()
     {

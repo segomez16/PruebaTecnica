@@ -16,6 +16,16 @@ class IndexControlador
     {
         require_once './Vista/View/Index.php';
     }
+
+    function Sales()
+    {
+        require_once './Vista/View/employeeSales.php';
+    }
+
+    function RRHH()
+    {
+        require_once './Vista/View/rrhh.php';
+    }
     function test()
     {
         require_once './Vista/View/test/index.php';
@@ -49,7 +59,7 @@ class IndexControlador
                     '<p>¡Hola ' . $est->getFIRSTNAME() . ' ' . $est->getLASTNAME() . '!</p>' .
                     '<p>Te informamos que tu código de seguridad es: ' . $codigoUnico . '</p>' .
                     '<p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>' .
-                    '<p><a href="http://127.0.0.1/SUPERMARKET/index.php?controlador=index&accion=CodigoPassword&codigo=' . $est->getID_EMPLOYEE() . '">Restablecer contraseña</a></p>'
+                    '<p><a href="http://localhost:8080/PruebaTecnica/index.php?controlador=index&accion=CodigoPassword&codigo=' . $est->getID_EMPLOYEE() . '">Restablecer contraseña</a></p>'
 
                 );
                 echo json_encode(true);
@@ -101,11 +111,6 @@ class IndexControlador
         }
     }
 
-
-
-
-
-
     function ingresar()
     {
         $user = $_POST["user"];
@@ -121,7 +126,15 @@ class IndexControlador
             }else{
                 if (password_verify($contra, $est->getPASSWORD())) {
                     $_SESSION['idUsuario'] = $est->getID_EMPLOYEE();
-                    header("Location: ./index.php?controlador=index&accion=Principal");
+                    $_SESSION['rol'] = $est->getPOSITION();
+                    if($est->getPOSITION() == 1){ //administrador
+                        header("Location: ./index.php?controlador=index&accion=Principal");
+                    }else if($est->getPOSITION() == 4){ //ventas
+                        header("Location: ./index.php?controlador=index&accion=Sales");
+                    }else if($est->getPOSITION() == 5){ //recursos humanos
+                        header("Location: ./index.php?controlador=index&accion=RRHH");
+                    }
+
                 } else {
                     header("Location: ./index.php");
                 }

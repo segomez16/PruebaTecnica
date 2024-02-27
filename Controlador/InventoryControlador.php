@@ -17,6 +17,11 @@ class InventoryControlador
         require_once './Vista/View/Inventory/Index.php';
     }
 
+    function Sales(){
+        $inventory= $this->viewAll();
+        require_once './Vista/View/Inventory/employee.php';
+    }
+
     function Todos()
     {
         $eM = new \Modelo\Metodos\InventoryM();

@@ -19,6 +19,11 @@ class EmployeesControlador
         require_once './Vista/View/Employees/Index.php';
     }
 
+    function RRHH(){
+        $employee = $this->viewAll();
+        require_once './Vista/View/Employees/rrhh.php';
+    }
+
     function userProfile(){
         $idUser =   $_SESSION['idUsuario'];
         require_once './Vista/View/Employees/userProfile.php';

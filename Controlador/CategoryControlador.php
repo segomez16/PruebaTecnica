@@ -1,4 +1,5 @@
 <?php
+//importamos todo lo que necesitamos del modelo o la vista
 require_once './Modelo/Conexion.php';
 require_once './Modelo/Entidades/Product_Categories.php';
 require_once './Modelo/Metodos/CategoryM.php';
@@ -49,10 +50,10 @@ class CategoryControlador
     {
         $e = new \Modelo\Entidades\Product_Categories();
         $eM = new \Modelo\Metodos\CategoryM();
-
+        //obtenemos los datos que vienen del front
         $e->setCategoryName($_POST["nameCategory"]);
         $e->setStatus(1);
-
+        //validamos que todo sea exitoso y devolvemos la respuesta al front
         if ($eM->insert($e)) {
             echo json_encode(true);
         } else {

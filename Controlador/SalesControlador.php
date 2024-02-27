@@ -24,6 +24,12 @@ class SalesControlador
         require_once './Vista/View/Sales/Index.php';
     }
 
+    function Sales()
+    {
+        $sales = $this->viewAll();
+        require_once './Vista/View/Sales/employee.php';
+    }
+
     function Insert()
     {
         $s = new \Modelo\Entidades\Sales();

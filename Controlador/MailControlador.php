@@ -10,6 +10,7 @@ require './vendor/autoload.php';
 require './vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require './vendor/setasign/fpdf/fpdf.php';
 require_once './Modelo/Metodos/ProductsM.php';
+
 class MailControlador
 {
     public function sendEmail($to, $subject, $body, $pdfPath = null)
@@ -60,98 +61,104 @@ class MailControlador
         $dompdf = new Dompdf($options);
 
         // HTML para el PDF
-        $html = '
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Invoice</title>
-        <style type="text/css">
-            * {
-                font-family: Verdana, Arial, sans-serif;
-            }
-            table{
-                font-size: x-small;
-            }
-            tfoot tr td{
-                font-weight: bold;
-                font-size: x-small;
-            }
+        $html = "
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Invoice</title>
+    <style type='text/css'>
+        body {
+            font-family: Verdana, Arial, sans-serif;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('./Vista/img/login.png');
+        }
 
-            .gray {
-                background-color: lightgray
-            }
-        </style>
-    </head>
-    <body>
-        <table width="100%">
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+        table {
+            font-size: x-small;
+        }
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
+
+        .gray {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body   >
+    <table width='100%'>
+        <tr>
+            <td align='right'>
+                <h3>Supermaket</h3>
+                <pre>
+                    Supermarket
+                    megasuper@gmail.com
+                    Telefono:25302067
+                </pre>
+            </td>
+        </tr>
+    </table>
+
+    <table width='100%'>
+        <tr>
+            <td><strong>Cliente:</strong> " . $nombreCliente . "</td>
+            <td><strong>Fecha de la factura:</strong> " . $fechaActual . "</td>
+        </tr>
+    </table>
+
+    <br/>
+    
+    <table width='100%'>
+        <thead style='background-color: lightgray;'>
             <tr>
-                <td align="right">
-                    <h3>Supermaket</h3>
-                    <pre>
-                        Supermarket
-                        megasuper@gmail.com
-                        Telefono:25302067
-                    </pre>
-                </td>
+                <th>Nombre Producto</th>
+                <th>Cantidad</th>
+                <th>Precio Unitario ₡</th>
+                <th>Total </th>
             </tr>
-        </table>
-
-        <table width="100%">
-            <tr>
-                <td><strong>Cliente:</strong> ' . $nombreCliente . '</td>
-                <td><strong>Fecha de la factura:</strong> ' . $fechaActual . '</td>
-            </tr>
-        </table>
-
-        <br/>
-
-        <table width="100%">
-            <thead style="background-color: lightgray;">
-                <tr>
-                    <th>Nombre Producto</th>
-                    <th>Cantidad</th>
-                    <th>Precio Unitario ₡</th>
-                    <th>Total </th>
-                </tr>
-            </thead>
-            <tbody>';
+        </thead>
+        <tbody>";
 
         // Agregar filas a la tabla con los detalles de la venta
         foreach ($detallesVenta as $detalle) {
-            $html .= '
-            <tr>
-                <th align="center">' . $detalle['nombreProducto'] . '</th>
-                <td align="center">' . $detalle['cantidadVendida'] . '</td>
-                <td align="center">' . $detalle['precioUnitario'] . '</td>
-                <td align="center">' . $detalle['subtotalDetalle'] . '</td>
-            </tr>';
+            $html .= "
+        <tr>
+            <th align='center'>" . $detalle['nombreProducto'] . "</th>
+            <td align='center'>" . $detalle['cantidadVendida'] . "</td>
+            <td align='center'>" . $detalle['precioUnitario'] . "</td>
+            <td align='center'>" . $detalle['subtotalDetalle'] . "</td>
+        </tr>";
         }
 
         // Cerrar las etiquetas del HTML
-        $html .= '
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="2"></td>
-                    <td align="right">Subtotal</td>
-                    <td align="right">' . $subtotal . '</td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td align="right">Iva</td>
-                    <td align="right">' . $iva . '</td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td align="right">Total</td>
-                    <td align="right" class="gray">₡ ' . $total . '</td>
-                </tr>
-            </tfoot>
-        </table>
-    </body>
-    </html>';
-
+        $html .= "
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan='2'></td>
+                <td align='right'>Subtotal</td>
+                <td align='right'>" . $subtotal . "</td>
+            </tr>
+            <tr>
+                <td colspan='2'></td>
+                <td align='right'>Iva</td>
+                <td align='right'>" . $iva . "</td>
+            </tr>
+            <tr>
+                <td colspan='2'></td>
+                <td align='right'>Total</td>
+                <td align='right' class='gray'>₡ " . $total . "</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>";
 
         // Después de cargar el HTML en Dompdf
         $dompdf->loadHtml($html);
@@ -163,11 +170,11 @@ class MailControlador
 
         // Devuelve el contenido del PDF como una cadena
         return $dompdf->output();
-
-
     }
 
-    function obtenerFechaActual() {
+
+    function obtenerFechaActual()
+    {
 
         date_default_timezone_set('America/Costa_Rica');
         $fechaActual = new DateTime();
