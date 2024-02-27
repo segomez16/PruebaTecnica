@@ -8,6 +8,22 @@ Este proyecto es un sistema de gestión para un supermercado en línea. Permite 
 - Dashboard con gráficos y datos estadísticos.
 - Autenticación de usuarios con opción de restablecimiento de contraseña.
 
+## Tecnologias y librerias 
+
+- Back End
+  - Php
+- Front End
+  - Html
+  - Css
+  - Javascript
+  - Jquery
+  - Ajax
+- Frameworks
+  - Bootstrap
+- Librerias
+  - phpmailer
+  - dompdf
+
 ## Requisitos de Instalación
 
 1. **Servidor Local:**
